@@ -10,8 +10,10 @@ App
                   #MenuElement
                   +linksTo
             Main
-                  Chat
-                  Settings
+                  ->*Chat
+                  ->Settings
+                  ->*Profile
+                  ->Edit Profile
 
 ### Syntax
 
