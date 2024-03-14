@@ -1,0 +1,21 @@
+App
+      ->Login
+      ->Signup
+      ->Home
+            Menu
+                  Logo
+                  #MenuElement
+                  +linksTo
+            SubMenu
+                  #MenuElement
+                  +linksTo
+            Main
+                  Chat
+                  Settings
+
+### Syntax
+
+      ->    : Route
+      ->*   : Dynamic Route 
+      +     : Prop
+      #     : Multiple Different Components of same type
