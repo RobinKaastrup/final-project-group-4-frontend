@@ -1,24 +1,20 @@
+import { Routes } from "react-router-dom"
+import { Route } from "react-router-dom"
 import Home from "./components/home/Home"
+import Login from "./components/login/Login"
+import Signup from "./components/signup/Signup"
 
 
 function App() {
   return(
     <div className="app-container">
+      <Routes>
+        <Route path="/" Component={Home} />
+        <Route path="/login" Component={Login} />
+        <Route path="/signup" Component={Signup} />
 
-      <div className="login-container">
-        <form className="login-details">
-          <h2>Login</h2>
-          <div className="username-inp">
-            <input type="text" placeholder="Username"></input>
-          </div>
-          <div className="password-inp">
-            <input type="password" placeholder="Password"></input>
-          </div>
-          <div className="login-submit">
-            <button className="login-submit-btn" type="submit">Login</button>
-          </div>
-        </form>
-      </div>
+      </Routes>
+
 
     </div>
   )

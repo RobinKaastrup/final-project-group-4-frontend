@@ -1,0 +1,43 @@
+/* Login */
+.login-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas: 
+    ". logo ."
+    ". form ."
+    ". . ."
+  ;
+  background-color: #1e2c47;
+}
+
+.login-details > h2 {
+  text-align: center;
+}
+
+.login-details {
+  grid-area: form;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  background-color: #253659;
+  border-radius: 20px;
+}
+
+.login-submit {
+  display: grid;
+}
+
+.login-submit-btn {
+  background-color: #BF665E;
+  transition: 0.4s;
+  border-style: none;
+
+}
+
+.login-submit-btn:hover {
+  background-color: #F27457;
+}
