@@ -4,9 +4,8 @@ function Menu() {
       <img />
       <ul className="menu-list">
         <li>Profile</li>
-        <li>Chat</li>
-        <li>Settings</li>
         <li>Contacts</li>
+        <li>Chat</li>
       </ul>        
     </nav>
   )

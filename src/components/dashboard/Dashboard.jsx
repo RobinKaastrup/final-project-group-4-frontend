@@ -1,13 +1,15 @@
+import ChatList from '../chatList/ChatList'
 import Chat from '../chat/Chat'
 import Menu from '../menu/Menu'
-import SubMenu from '../submenu/SubMenu'
+import { Outlet } from 'react-router-dom'
 
-function Home() {
+function Dashboard() {
   return (
     <div className='home-view'>
         <Menu />
-        <SubMenu />
-
+        
+        <Outlet />
+        <ChatList />
         <main className="content-container">
           <Chat />
         </main>
@@ -16,4 +18,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Dashboard

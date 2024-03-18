@@ -1,4 +1,4 @@
-function SubMenu() {
+function ChatList() {
   return (
     <div className="sub-menu-container">
     <ul>
@@ -11,4 +11,4 @@ function SubMenu() {
   ) 
 }
 
-export default SubMenu
+export default ChatList

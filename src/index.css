@@ -32,10 +32,9 @@ a:hover {
 .home-view {
   display: grid;
   grid-template-rows: 8vh calc(100vh - 8vh);
-  grid-template-columns: 9fr 21fr;
   grid-template-areas:
-    "menu menu" 
-    "submenu content";
+    "menu" 
+    "content";
 
   height: 100vh;
   background-color: black;
