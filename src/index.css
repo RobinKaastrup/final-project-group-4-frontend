@@ -10,12 +10,15 @@ body {
   margin: 0;
   height: 100%;
 
+  background-color: #253659;
   color: white;
   font-family:  'Arial Narrow Bold', sans-serif;
 }
 
 button {
   color: white;
+  background-color: #BF665E;
+  border-style: none;
 }
 
 a {
@@ -28,8 +31,8 @@ a:hover {
 }
 
 
-/* Home */
-.home-view {
+/* Dashboard */
+.dashboard-view {
   display: grid;
   grid-template-rows: 8vh calc(100vh - 8vh);
   grid-template-areas:
@@ -37,7 +40,28 @@ a:hover {
     "content";
 
   height: 100vh;
-  background-color: black;
+  background-color: #253659;
+}
+
+.chat-dashboard {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 
+    "chatlist chat"
+  ;
+}
+
+.profile-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: ". profile .";
+}
+
+.contacts-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: ". contacts .";
 }
 
 
@@ -74,20 +98,16 @@ a:hover {
 }
 
 /* Sub Menu */
-.sub-menu-container {
-  grid-area: submenu;
+.chat-list-container {
+  grid-area: chatlist;
   background-color: #253659;
   z-index: 1;
   box-shadow: 0.5em 0px 0.2em #223150;
 
 }
-/* Content */
-.content-container {
-  background-color: #253659;
-}
 
 /* Chat */
-.chat-container {
+.chat {
   display: grid;
   grid-template-rows: 1fr 16fr 2fr;
 
@@ -98,7 +118,7 @@ a:hover {
   display: flex;
   align-items: center;
   margin-left: 1em;
-  z-index: 3;
+  z-index: 4;
 }
 
 /* Messages */
@@ -166,4 +186,25 @@ a:hover {
 
 .user-input-container > button:hover {
   background-color: #F27457;
+}
+
+/* Profile */
+.profile-view {
+  grid-area: profile;
+  background-color: #253659;
+}
+
+.profile-heading {
+  grid-area: username;
+}
+
+/* Contacts List */
+.contacts-view {
+  grid-area: contacts;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
 }

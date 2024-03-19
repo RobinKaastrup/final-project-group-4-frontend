@@ -5,16 +5,13 @@ import { Outlet } from 'react-router-dom'
 
 function Dashboard() {
   return (
-    <div className='home-view'>
+    <div className='dashboard-view'>
         <Menu />
         
         <Outlet />
-        <ChatList />
-        <main className="content-container">
-          <Chat />
-        </main>
 
-      </div>
+
+    </div>
   )
 }
 

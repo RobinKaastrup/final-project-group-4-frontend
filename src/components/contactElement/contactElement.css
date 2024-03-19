@@ -1,0 +1,9 @@
+.contact-element {
+  display: flex;
+  flex-direction: column;
+  -ms-flex-align: center;
+}
+
+.contact-interaction {
+  display: flex;
+}

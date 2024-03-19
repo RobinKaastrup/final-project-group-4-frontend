@@ -1,6 +1,6 @@
 function ChatList() {
   return (
-    <div className="sub-menu-container">
+    <div className="chat-list-container">
     <ul>
       <li>Chat #1</li>
       <li>Chat #2</li>

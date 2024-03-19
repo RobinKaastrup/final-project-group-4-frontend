@@ -8,9 +8,9 @@ function Chat() {
   const [chatDetails, setChatDetails] = useState([])
 
   return (
-    <div className="chat-container">
+    <div className="chat">
           
-    <ChatHeading />
+    <ChatHeading title={''}/>
 
     <div className="messages-container">
       <Message />
