@@ -5,7 +5,9 @@ import Message from './Message'
 
 
 function Chat() {
-  const [chatDetails, setChatDetails] = useState([])
+  const [chatDetails, setChatDetails] = useState({})
+
+  // Add Fetch Function to get Chat Data
 
   return (
     <div className="chat">

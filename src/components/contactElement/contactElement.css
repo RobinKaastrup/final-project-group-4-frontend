@@ -1,6 +1,6 @@
 .contact-element {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   -ms-flex-align: center;
 }
 
