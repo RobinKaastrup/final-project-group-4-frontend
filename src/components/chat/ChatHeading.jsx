@@ -1,8 +1,9 @@
-function ChatHeading(title) {
-  
+function ChatHeading(props) {
+  const { title } = props
+
   return (
     <div className="chat-heading">
-    [Chat Heading]
+      {title}
     </div>
   )
 }
