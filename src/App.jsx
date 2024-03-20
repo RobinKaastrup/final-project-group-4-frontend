@@ -13,21 +13,32 @@ import axios from "axios"
 const DataContext = createContext()
 
 function App() {
-  const [authToken, setAuthToken] = useState(null);
-  const [response, setResponse] = useState(null);
+  const [authToken, setAuthToken] = useState(localStorage.getItem("token"));
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
-  
+
   const baseURL = "http://localhost:4000" 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/signin");
+    if (!authToken) {
+      navigate("/login");
+    } else {
+      console.log(loggedInUser)
+      axios.get(`${baseURL}/users/${loggedInUser.id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((response) => {
+        setLoggedInUser(response.data);
+      })
+      .catch(() => {
+        localStorage.removeItem("token");
+        navigate("/login");
+      });
     }
-  }, [navigate]);
+  }, [authToken, navigate]);
 
-
-  axios.get(`${baseURL}/auth/signin`)
 
   return(
     <div className="app-container">
