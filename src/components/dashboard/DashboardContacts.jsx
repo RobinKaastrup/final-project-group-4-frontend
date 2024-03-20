@@ -28,13 +28,26 @@ function DashboardContacts() {
       .catch(error => console.error(`Error: could not fetch contacts: `, error))
   }, [])
 
+  const newContact = (event) => {
+    event.preventDefault();
+  }
+
   return (
     <div className="contacts-dashboard">
       <div className="contacts-view">
+
+        <form className="new-contact-form">
+          <input className="new-contact-inp" type="text" placeholder="username" />
+          <button className="new-contact-submit" type="submit" onClick={(e) => newContact(e)}>
+            Add to Contacts
+          </button>
+
+        </form>
+
         <ul className="contacts-list">
           {console.log((contacts !== undefined ? contacts : "none"))}
           {contacts !== undefined && contacts.map((contact, index) => (
-            <ContactElement key={index}/>  
+            <ContactElement key={index} {...contact}/>  
           ))}
           
         </ul>
