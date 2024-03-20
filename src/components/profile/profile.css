@@ -1,0 +1,56 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #253659; /* Background color */
+    color: white; /* Adjust text color for readability */
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: auto;
+    padding-top: 50px; /* Space from top */
+}
+
+.header {
+    background-color: #F27457; /* Header background color */
+    height: 150px; /* Adjust based on your preference */
+    border-radius: 8px 8px 0 0; /* Rounded corners on top */
+}
+
+.profile-info {
+    background-color: #30475E; /* Slightly different shade for contrast */
+    padding: 20px;
+    border-radius: 0 0 8px 8px; /* Rounded corners on bottom */
+}
+
+.profile-picture {
+    width: 100px; /* Adjust based on your preference */
+    height: 100px;
+    border-radius: 50%; /* Circular profile picture */
+    object-fit: cover; /* Keep aspect ratio */
+    display: block;
+    margin: -60px auto 10px; /* Position it partly inside the header */
+    border: 3px solid white; /* Optional: add a border around the picture */
+}
+
+.username, .email {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.edit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0 0; /* Space from the top */
+    background-color: #F27457; /* Matching the header */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #F29580; /* Slightly lighter on hover */
+}

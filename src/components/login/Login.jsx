@@ -23,9 +23,7 @@ function Login() {
         console.log(response)
         const token = response.data.token;
         const userId = response.data.id;
-        console.log(userId)
         localStorage.setItem("token", token);
-        console.log("Token:", token);
 
         return axios.get(`${context.baseURL}/users/${userId}`, {
           headers: {
@@ -34,9 +32,7 @@ function Login() {
         });
       })
       .then((userResponse) => {
-        console.log(userResponse)
         context.setLoggedInUser(userResponse.data)
-        console.log()
         
         //context.setLoggedInUser(response.data)
         // Redirect the user back to the original page
