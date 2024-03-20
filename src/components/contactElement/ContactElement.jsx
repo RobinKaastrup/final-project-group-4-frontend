@@ -15,7 +15,8 @@ function ContactElement(props) {
   }
 
   const deleteContact = () => {
-
+    axios
+      .delete()
   }
 
   return (

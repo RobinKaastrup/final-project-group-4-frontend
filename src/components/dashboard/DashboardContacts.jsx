@@ -14,7 +14,7 @@ function DashboardContacts() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     axios
-      .get(`http://localhost:4000/relations/all`, {
+      .get(`http://localhost:4000/relations/${userId.id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -23,7 +23,6 @@ function DashboardContacts() {
         console.log(response.data)
         const contactsList = response.data.map(relation => relation.friend)
         setContacts(contactsList)
-        console.log("contacts loaded")
       })
       .catch(error => console.error(`Error: could not fetch contacts: `, error))
   }, [])
@@ -45,9 +44,8 @@ function DashboardContacts() {
         </form>
 
         <ul className="contacts-list">
-          {console.log((contacts !== undefined ? contacts : "none"))}
           {contacts !== undefined && contacts.map((contact, index) => (
-            <ContactElement key={index} {...contact}/>  
+            <ContactElement key={contact.id} {...contact}/>  
           ))}
           
         </ul>
