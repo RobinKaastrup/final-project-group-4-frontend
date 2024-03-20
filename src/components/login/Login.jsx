@@ -21,6 +21,7 @@ function Login() {
         const token = response.data.token;
         localStorage.setItem("token", token);
         console.log("Token:", token);
+        console.log("Response:", response.data);
         // Redirect the user back to the original page
         const returnUrl = localStorage.getItem("returnUrl") || "/";
         navigate(returnUrl);

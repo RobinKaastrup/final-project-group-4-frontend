@@ -17,7 +17,7 @@ function Menu() {
       <ul className="menu-list">
         <li onClick={() => navigate("/profile/1")}>Profile</li>
         <li onClick={() => navigate("/contacts/1")}>Contacts</li>
-        <li onClick={() => navigate("/chat")}>Chat</li>
+        <li onClick={() => navigate("/chats/1")}>Chat</li>
       </ul>
       <button className="logout-button" onClick={handleLogout}>
         Logout

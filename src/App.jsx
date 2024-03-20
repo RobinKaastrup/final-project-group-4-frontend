@@ -1,5 +1,4 @@
-import { Routes, useNavigate } from "react-router-dom";
-import { Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
@@ -19,7 +18,7 @@ function App() {
   useEffect(() => {
     const authToken = localStorage.getItem("token");
     if (!authToken && window.location.pathname !== "/signup") {
-      navigate && navigate("/login"); // Check if navigate exists before using it
+      navigate("/login"); // Redirect to login if no token and not on signup page
     } else if (authToken) {
       axios
         .get("http://localhost:4000/users", {
@@ -32,9 +31,7 @@ function App() {
         })
         .catch(() => {
           localStorage.removeItem("token");
-          if (window.location.pathname !== "/signup") {
-            navigate && navigate("/login"); // Check if navigate exists before using it
-          }
+          navigate("/login"); // Redirect to login if token invalid
         });
     }
   }, [navigate]);
@@ -45,13 +42,12 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Dashboard />}>
-            <Route path="/chat" element={<DashboardChat />}>
-              <Route path="/chat/:id" element={<Chat />} />
-            </Route>
+          <Route path="/" element={<Dashboard loggedInUser={loggedInUser} />}>
+            <Route path="/chats/:id" element={<DashboardChat />} />
             <Route path="/profile/:id" element={<DashboardProfile />} />
             <Route path="/contacts/:id" element={<DashboardContacts />} />
           </Route>
+          <Route path="/chat/:id" element={<Chat />} />
         </Routes>
       </DataContext.Provider>
     </div>
