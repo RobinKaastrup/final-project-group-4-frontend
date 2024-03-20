@@ -31,6 +31,8 @@ a:hover {
 }
 
 
+
+
 /* Dashboard */
 .dashboard-view {
   display: grid;
@@ -97,7 +99,7 @@ a:hover {
   background-color: #F27457;
 }
 
-/* Sub Menu */
+/* ChatList */
 .chat-list-container {
   grid-area: chatlist;
   background-color: #253659;
@@ -206,5 +208,6 @@ a:hover {
 .contacts-list {
   display: flex;
   flex-direction: column;
+  gap: 0.4em;
   list-style-type: none;
 }

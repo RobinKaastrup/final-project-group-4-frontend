@@ -20,10 +20,8 @@ function Menu() {
         <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>Profile</li>
         <li onClick={() => navigate("/contacts/1")}>Contacts</li>
         <li onClick={() => navigate("/chat")}>Chat</li>
+        <li className="logout-button" onClick={handleLogout}>Logout</li>
       </ul>
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
     </nav>
   );
 }
