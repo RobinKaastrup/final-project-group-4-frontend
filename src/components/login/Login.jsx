@@ -5,7 +5,7 @@ import axios from "axios";
 import { DataContext } from "../../App";
 
 function Login() {
-  const context = useContext(DataContext)
+  const context = useContext(DataContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -20,14 +20,27 @@ function Login() {
     axios
       .post(`${context.baseURL}/auth/signin`, signInData)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         const token = response.data.token;
         const userId = response.data.id;
-        console.log(userId)
+        console.log(userId);
         localStorage.setItem("token", token);
         console.log("Token:", token);
+
+        return axios.get(`${context.baseURL}/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      })
+      .then((userResponse) => {
+        console.log(userResponse);
+        context.setLoggedInUser(userResponse.data);
+        console.log();
+
+        //context.setLoggedInUser(response.data)
         // Redirect the user back to the original page
-        
+
         const returnUrl = localStorage.getItem("returnUrl") || "/";
         navigate(returnUrl);
       })
