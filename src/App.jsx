@@ -6,23 +6,27 @@ import Signup from "./components/signup/Signup";
 import Dashboard from "./components/dashboard/Dashboard";
 import DashboardChat from "./components/dashboard/DashboardChat";
 import DashboardContacts from "./components/dashboard/DashboardContacts";
-import DashboardProfile from "./components/dashboard/DashboardProfile";
+import DashboardProfile from "./components/profile/DashboardProfile";
 import Chat from "./components/chat/Chat";
 import axios from "axios";
 
 const DataContext = createContext();
 
+
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
+  const baseURL = "http://localhost:4000"
 
   useEffect(() => {
     const authToken = localStorage.getItem("token");
+    console.log(loggedInUser)
     if (!authToken && window.location.pathname !== "/signup") {
       navigate && navigate("/login"); // Check if navigate exists before using it
-    } else if (authToken) {
+    } else if (authToken && loggedInUser !== null) {
+      console.log("check: ", loggedInUser)
       axios
-        .get("http://localhost:4000/users", {
+        .get(`${baseURL}/users/${loggedInUser.id}`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -41,7 +45,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <DataContext.Provider value={""}>
+      <DataContext.Provider value={{ loggedInUser, setLoggedInUser, baseURL }}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -58,4 +62,4 @@ function App() {
   );
 }
 
-export default App;
+export { App, DataContext };
