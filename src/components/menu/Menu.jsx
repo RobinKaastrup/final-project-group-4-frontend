@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { DataContext } from "../../App";
 
 function Menu() {
+  const context = useContext(DataContext)
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,7 +17,7 @@ function Menu() {
     <nav className="menu-container">
       <img />
       <ul className="menu-list">
-        <li onClick={() => navigate("/profile/1")}>Profile</li>
+        <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>Profile</li>
         <li onClick={() => navigate("/contacts/1")}>Contacts</li>
         <li onClick={() => navigate("/chat")}>Chat</li>
       </ul>
