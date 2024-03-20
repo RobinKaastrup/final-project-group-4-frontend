@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
+import { DataContext } from "../../App";
 
 function Login() {
+  const context = useContext(DataContext)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -16,13 +18,16 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:4000/auth/signin", signInData)
+      .post(`${context.baseURL}/auth/signin`, signInData)
       .then((response) => {
+        console.log(response)
         const token = response.data.token;
+        const userId = response.data.id;
+        console.log(userId)
         localStorage.setItem("token", token);
         console.log("Token:", token);
-        console.log("Response:", response.data);
         // Redirect the user back to the original page
+        
         const returnUrl = localStorage.getItem("returnUrl") || "/";
         navigate(returnUrl);
       })
