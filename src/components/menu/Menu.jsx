@@ -17,9 +17,13 @@ function Menu() {
     <nav className="menu-container">
       <img />
       <ul className="menu-list">
-        <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>Profile</li>
+        <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>
+          Profile
+        </li>
         <li onClick={() => navigate("/contacts/1")}>Contacts</li>
-        <li onClick={() => navigate("/chats/1")}>Chat</li>
+        <li onClick={() => navigate(`/chats/${context.loggedInUser.id}`)}>
+          Chat
+        </li>
       </ul>
       <button className="logout-button" onClick={handleLogout}>
         Logout
