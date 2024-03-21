@@ -19,7 +19,7 @@ function Menu() {
       <ul className="menu-list">
         <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>Profile</li>
         <li onClick={() => navigate(`/contacts/${context.loggedInUser.id}`)}>Contacts</li>
-        <li onClick={() => navigate(`/chats/${context.loggedInUser.id}`)}>
+        <li onClick={() => navigate(`/chats/welcome`)}>
           Chat
         </li>
       </ul>

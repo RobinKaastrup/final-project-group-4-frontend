@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ChatHeading from "./ChatHeading";
 import ChatInput from "./ChatInput";
 import Message from "./Message";
@@ -9,9 +9,15 @@ function Chat({ loggedInUser, navigate }) {
   const { id } = useParams();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    fetchMessages();
+    if (id) {
+      // Check if ID is valid
+      fetchMessages();
+    } else {
+      setLoading(false); // Set loading to false to stop loading indicator
+    }
   }, [id]);
 
   const fetchMessages = () => {
@@ -82,6 +88,9 @@ function Chat({ loggedInUser, navigate }) {
 
   return (
     <div className="chat">
+
+      {id ? ( // Check if ID is valid
+        <>
       <ChatHeading id={id} 
         onDelete={deleteChat}
         fetchMessages={fetchMessages}
@@ -94,10 +103,35 @@ function Chat({ loggedInUser, navigate }) {
             loggedInUser={loggedInUser}
             onMessageEdited={handleEditMessage}
             onMessageDeleted={handleDeleteMessage}
+
           />
-        ))}
-      </div>
-      <ChatInput onMessageSent={handleMessageSent} />
+          <div className="messages-container">
+            {messages.map((message) => (
+              <Message
+                key={message.id}
+                message={message}
+                loggedInUser={loggedInUser}
+                onMessageEdited={handleEditMessage}
+                onMessageDeleted={handleDeleteMessage}
+              />
+            ))}
+          </div>
+          <ChatInput onMessageSent={handleMessageSent} />
+        </>
+      ) : (
+        <div
+          className="start-new-chat-message"
+          style={{
+            padding: "10px",
+            backgroundColor: "#253659",
+            borderRadius: "5px",
+            textAlign: "center",
+          }}
+        >
+          Start a new chat with one of your{" "}
+          <Link to={`/contacts/${userId}`}>contacts.</Link>
+        </div>
+      )}
     </div>
   );
 }
