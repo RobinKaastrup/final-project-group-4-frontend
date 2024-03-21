@@ -66,15 +66,15 @@ function ChatList() {
 
   return (
     <div className="chat-list-container">
-      <ul>
+
         {chats.map((chat) => (
-          <li key={chat.id}>
-            <button onClick={() => handleChatClick(chat)}>
+          <div className="chat-list-element" key={chat.id} onClick={() => handleChatClick(chat)}>
+
               {chat.content}
-            </button>
-          </li>
+
+          </div>
         ))}
-      </ul>
+
     </div>
   );
 }

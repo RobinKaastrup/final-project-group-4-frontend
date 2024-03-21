@@ -88,12 +88,22 @@ function Chat({ loggedInUser, navigate }) {
 
   return (
     <div className="chat">
+
       {id ? ( // Check if ID is valid
         <>
-          <ChatHeading
-            title={`Chat #${id}`}
-            onDelete={deleteChat}
-            fetchMessages={fetchMessages}
+      <ChatHeading id={id} 
+        onDelete={deleteChat}
+        fetchMessages={fetchMessages}
+        />
+      <div className="messages-container">
+        {messages.map((message) => (
+          <Message
+            key={message.id}
+            message={message}
+            loggedInUser={loggedInUser}
+            onMessageEdited={handleEditMessage}
+            onMessageDeleted={handleDeleteMessage}
+
           />
           <div className="messages-container">
             {messages.map((message) => (

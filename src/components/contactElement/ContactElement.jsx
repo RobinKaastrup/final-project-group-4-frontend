@@ -62,7 +62,7 @@ function ContactElement(props) {
     <li className="contact-element">
       <img
         className="contact-image"
-        src="https://cdn.domestika.org/c_fill,dpr_auto,f_auto,h_256,pg_1,t_base_params,w_256/v1575591291/avatars/000/161/315/161315-original.jpg?1575591291"
+        src={props.contact.profileimage}
         alt="Contact avatar"
       />
       <div>
