@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 import { DataContext } from "../../App";
+import Logo from "../logo/Logo";
 
 function Login() {
   const context = useContext(DataContext);
@@ -57,7 +58,11 @@ function Login() {
   return (
     <div className="login-container">
       <form className="login-details" onSubmit={handleSignIn}>
-        <h2>Login</h2>
+        <div>
+          <Logo />
+          <h2>Login</h2>
+
+        </div>
         <div className="username-inp">
           <input
             type="text"
