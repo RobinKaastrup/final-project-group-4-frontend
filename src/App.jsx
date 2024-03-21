@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const authToken = localStorage.getItem("token");
     if (!authToken && window.location.pathname !== "/signup") {
-      navigate && navigate("/login"); // Check if navigate exists before using it
+      navigate && navigate("/login");
     } else if (authToken && loggedInUser !== null) {
       axios
         .get(`${baseURL}/users/${loggedInUser.id}`, {
@@ -33,12 +33,15 @@ function App() {
         })
         .catch(() => {
           localStorage.removeItem("token");
+          localStorage.removeItem("userId");
           if (window.location.pathname !== "/signup") {
             navigate && navigate("/login"); // Check if navigate exists before using it
           }
         });
     }
   }, [navigate]);
+
+  console.log("loggedInUser", loggedInUser);
 
   return (
     <div className="app-container">
@@ -48,7 +51,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Dashboard />}>
             <Route path="/chats" element={<DashboardChat />}>
-              <Route path="/chats/:id" element={<Chat />} />
+              <Route
+                path="/chats/:id"
+                element={<Chat loggedInUser={loggedInUser} />}
+              />
             </Route>
             <Route path="/profile/:id" element={<DashboardProfile />} />
             <Route path="/contacts/:id" element={<DashboardContacts />} />

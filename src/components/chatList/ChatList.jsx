@@ -53,7 +53,7 @@ function ChatList() {
   }, [loggedInUser]);
 
   const handleChatClick = (chat) => {
-    navigate(`/chats/${chat.id}`); // Navigate to the chat component with the specific chat ID
+    navigate(`/chats/${chat.id}`);
   };
 
   if (loading) {

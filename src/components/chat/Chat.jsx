@@ -5,12 +5,16 @@ import ChatHeading from "./ChatHeading";
 import ChatInput from "./ChatInput";
 import Message from "./Message";
 
-function Chat() {
+function Chat({ loggedInUser }) {
   const { id } = useParams();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    fetchMessages();
+  }, [id]);
+
+  const fetchMessages = () => {
     setLoading(true);
     const authToken = localStorage.getItem("token");
 
@@ -25,15 +29,24 @@ function Chat() {
           (message) => message.content
         );
 
-        setMessages(messagesContent);
+        const messageObjects = response.data.data || [];
 
+        console.log("messageObjects", messageObjects);
+
+        setMessages(messagesContent);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching messages:", error);
         setLoading(false);
       });
-  }, [id]);
+  };
+
+  console.log("messages", messages);
+
+  const handleMessageSent = () => {
+    fetchMessages();
+  };
 
   if (loading) {
     return <div>Loading messages...</div>;
@@ -44,10 +57,10 @@ function Chat() {
       <ChatHeading title={`Chat #${id}`} />
       <div className="messages-container">
         {messages.map((message, index) => (
-          <Message key={index} message={message} />
+          <Message key={index} message={message} loggedInUser={loggedInUser} />
         ))}
       </div>
-      <ChatInput />
+      <ChatInput onMessageSent={handleMessageSent} />
     </div>
   );
 }

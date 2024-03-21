@@ -1,4 +1,26 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 function Message({ message }) {
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/chats/${message.chat.id}/users/${message.user.id}`
+        );
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error("Error fetching username:", error);
+      }
+    };
+
+    if (message && message.user) {
+      fetchUsername();
+    }
+  }, [message]);
+
   return (
     <div className="message">
       <img
@@ -7,7 +29,7 @@ function Message({ message }) {
         alt="User avatar"
       />
       <span className="message-name">
-        <b>User</b> {/* It is user for now */}
+        <b>{username || "User"}</b>
       </span>
       <p className="message-body">{message}</p>
     </div>

@@ -23,7 +23,10 @@ function Login() {
         console.log(response);
         const token = response.data.token;
         const userId = response.data.id;
+        const username = response.data.username;
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("username", username)
 
         return axios.get(`${context.baseURL}/users/${userId}`, {
           headers: {
