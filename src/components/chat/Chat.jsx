@@ -25,15 +25,13 @@ function Chat({ loggedInUser, navigate }) {
         },
       })
       .then((response) => {
-        const messagesContent = response.data.data.map(
-          (message) => message
+        const fetchedMessages = response.data.data;
+
+        fetchedMessages.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
         );
 
-        const messageObjects = response.data.data || [];
-
-        console.log("messageObjects", messageObjects);
-
-        setMessages(messagesContent);
+        setMessages(fetchedMessages);
         setLoading(false);
       })
       .catch((error) => {
@@ -41,8 +39,6 @@ function Chat({ loggedInUser, navigate }) {
         setLoading(false);
       });
   };
-
-  console.log("messages", messages);
 
   const handleMessageSent = () => {
     fetchMessages();
@@ -66,16 +62,40 @@ function Chat({ loggedInUser, navigate }) {
       });
   };
 
+  const handleEditMessage = (editedMessage) => {
+    setMessages((prevMessages) =>
+      prevMessages.map((msg) =>
+        msg.id === editedMessage.id ? editedMessage : msg
+      )
+    );
+  };
+
+  const handleDeleteMessage = (deletedMessageId) => {
+    setMessages((prevMessages) =>
+      prevMessages.filter((msg) => msg.id !== deletedMessageId)
+    );
+  };
+
   if (loading) {
     return <div>Loading messages...</div>;
   }
 
   return (
     <div className="chat">
-      <ChatHeading title={`Chat #${id}`} onDelete={deleteChat} />
+      <ChatHeading
+        title={`Chat #${id}`}
+        onDelete={deleteChat}
+        fetchMessages={fetchMessages}
+      />
       <div className="messages-container">
-        {messages.map((message, index) => (
-          <Message key={index} message={message} loggedInUser={loggedInUser} />
+        {messages.map((message) => (
+          <Message
+            key={message.id}
+            message={message}
+            loggedInUser={loggedInUser}
+            onMessageEdited={handleEditMessage}
+            onMessageDeleted={handleDeleteMessage}
+          />
         ))}
       </div>
       <ChatInput onMessageSent={handleMessageSent} />
