@@ -11,6 +11,10 @@ function ChatList() {
 
   useEffect(() => {
     setLoading(true);
+    fetchChats();
+  }, [loggedInUser]);
+
+  const fetchChats = () => {
     const authToken = localStorage.getItem("token");
 
     axios
@@ -50,7 +54,7 @@ function ChatList() {
         console.error("Error fetching users:", error);
         setLoading(false);
       });
-  }, [loggedInUser]);
+  };
 
   const handleChatClick = (chat) => {
     navigate(`/chats/${chat.id}`);
@@ -66,7 +70,7 @@ function ChatList() {
         {chats.map((chat) => (
           <li key={chat.id}>
             <button onClick={() => handleChatClick(chat)}>
-              Chat #{chat.id}
+              {chat.content}
             </button>
           </li>
         ))}

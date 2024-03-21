@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 
-function ChatHeading(props) {
-  const { id } = props
+function ChatHeading({ id, onDelete, fetchMessages }) {
   const [inEdit, setInEdit] = useState(false)
   const [newTitle, setNewTitle] = useState('');
   const [usernameToAdd, setUsernameToAdd] = useState('');
@@ -108,8 +107,12 @@ function ChatHeading(props) {
           </ul>
         </div>
       )}
+      <button onClick={onDelete} className="delete-button">
+        Delete Chat
+      </button>
+      <button onClick={fetchMessages} className="refresh-button">Refresh chat</button>
     </div>
   );
 }
 
-export default ChatHeading
+export default ChatHeading;
