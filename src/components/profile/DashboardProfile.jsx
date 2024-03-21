@@ -61,6 +61,5 @@ function DashboardProfile() {
     </div>
   );
 }
-//<img src={profilePictureUrl} alt="Profile Picture" className="profile-picture"/>
 
 export default DashboardProfile
