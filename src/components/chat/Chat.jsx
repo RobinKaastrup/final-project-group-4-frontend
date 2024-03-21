@@ -5,7 +5,7 @@ import ChatHeading from "./ChatHeading";
 import ChatInput from "./ChatInput";
 import Message from "./Message";
 
-function Chat({ loggedInUser }) {
+function Chat({ loggedInUser, navigate }) {
   const { id } = useParams();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,13 +48,31 @@ function Chat({ loggedInUser }) {
     fetchMessages();
   };
 
+  const deleteChat = () => {
+    const authToken = localStorage.getItem("token");
+
+    axios
+      .delete(`http://localhost:4000/chats/${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((response) => {
+        console.log("Chat deleted successfully:", response.data);
+        navigate("/chats");
+      })
+      .catch((error) => {
+        console.error("Error deleting chat:", error);
+      });
+  };
+
   if (loading) {
     return <div>Loading messages...</div>;
   }
 
   return (
     <div className="chat">
-      <ChatHeading title={`Chat #${id}`} />
+      <ChatHeading title={`Chat #${id}`} onDelete={deleteChat} />
       <div className="messages-container">
         {messages.map((message, index) => (
           <Message key={index} message={message} loggedInUser={loggedInUser} />
