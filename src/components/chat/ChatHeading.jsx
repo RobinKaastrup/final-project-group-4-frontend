@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useEffect, useState } from "react"
 
@@ -74,6 +75,7 @@ function ChatHeading({ id, onDelete, fetchMessages }) {
       console.error("Failed to update chat:", error);
     });
   };
+
 
   return (
     <div className="chat-heading">

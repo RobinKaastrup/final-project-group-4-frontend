@@ -108,9 +108,30 @@ a:hover {
 /* ChatList */
 .chat-list-container {
   grid-area: chatlist;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding-top: 1em;
   background-color: #253659;
   z-index: 1;
   box-shadow: 0.5em 0px 0.2em #223150;
+  overflow-y: scroll;
+
+}
+
+.chat-list-element {
+  transition: 0.4s;
+  width: 80%;
+  padding: 1em;
+  margin: 0em 1em;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #1e2c47;
+
+}
+
+.chat-list-element:hover {
+  background-color: #F27457;
 
 }
 
@@ -221,6 +242,7 @@ a:hover {
   padding: 0;
   list-style-type: none;
 }
+
 
 .new-contact-form {
   width: 100%;
