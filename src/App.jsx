@@ -13,18 +13,18 @@ import axios from "axios";
 
 const DataContext = createContext();
 
-
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
-  const baseURL = "http://localhost:4000"
+  const baseURL = "http://localhost:4000";
 
   useEffect(() => {
     const authToken = localStorage.getItem("token");
+
     if (!authToken | loggedInUser === null && window.location.pathname !== "/signup") {
       navigate && navigate("/login"); // Check if navigate exists before using it
+
     } else if (authToken && loggedInUser !== null) {
-      console.log("check: ", loggedInUser)
       axios
         .get(`${baseURL}/users/${loggedInUser.id}`, {
           headers: {
@@ -36,12 +36,15 @@ function App() {
         })
         .catch(() => {
           localStorage.removeItem("token");
+          localStorage.removeItem("userId");
           if (window.location.pathname !== "/signup") {
             navigate && navigate("/login"); // Check if navigate exists before using it
           }
         });
     }
   }, [navigate]);
+
+  console.log("loggedInUser", loggedInUser);
 
   return (
     <div className="app-container">
@@ -50,8 +53,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Dashboard />}>
-            <Route path="/chat" element={<DashboardChat />}>
-              <Route path="/chat/:id" element={<Chat />} />
+            <Route path="/chats" element={<DashboardChat />}>
+              <Route
+                path="/chats/:id"
+                element={<Chat loggedInUser={loggedInUser} />}
+              />
             </Route>
             <Route path="/profile/:id" element={<DashboardProfile />} />
             <Route path="/profile/edit/:id" element={<EditProfile />} />

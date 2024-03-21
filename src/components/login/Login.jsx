@@ -5,7 +5,7 @@ import axios from "axios";
 import { DataContext } from "../../App";
 
 function Login() {
-  const context = useContext(DataContext)
+  const context = useContext(DataContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -20,10 +20,15 @@ function Login() {
     axios
       .post(`${context.baseURL}/auth/signin`, signInData)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         const token = response.data.token;
         const userId = response.data.id;
+
+        const username = response.data.username;
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("username", username)
+
 
         return axios.get(`${context.baseURL}/users/${userId}`, {
           headers: {
@@ -32,11 +37,14 @@ function Login() {
         });
       })
       .then((userResponse) => {
-        context.setLoggedInUser(userResponse.data)
+
+        console.log(userResponse);
+        context.setLoggedInUser(userResponse.data);
+
         
         //context.setLoggedInUser(response.data)
         // Redirect the user back to the original page
-        
+
         const returnUrl = localStorage.getItem("returnUrl") || "/";
         navigate(returnUrl);
       })
