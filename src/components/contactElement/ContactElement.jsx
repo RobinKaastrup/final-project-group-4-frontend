@@ -18,7 +18,7 @@ function ContactElement(props) {
       .post(
         "http://localhost:4000/chats",
         {
-          content: "Second chat",
+          content: `${props.contact.username}`,
           userIds: userIds,
         },
         {
