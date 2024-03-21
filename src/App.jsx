@@ -62,8 +62,8 @@ function App() {
                 element={<Chat loggedInUser={loggedInUser} />}
               />
             </Route>
-            <Route path="/profile" element={<DashboardProfile />} />
-            <Route path="/profile/:id" element={<ContactProfile />} />
+            {/* <Route path="/profile" element={<DashboardProfile />} /> */}
+            <Route path="/profile/:id" element={<DashboardProfile />} />
             <Route path="/profile/edit/:id" element={<EditProfile />} />
             <Route path="/contacts/:id" element={<DashboardContacts />} />
           </Route>

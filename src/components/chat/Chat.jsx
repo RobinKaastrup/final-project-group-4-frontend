@@ -26,7 +26,7 @@ function Chat({ loggedInUser, navigate }) {
       })
       .then((response) => {
         const messagesContent = response.data.data.map(
-          (message) => message.content
+          (message) => message
         );
 
         const messageObjects = response.data.data || [];
