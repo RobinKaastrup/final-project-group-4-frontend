@@ -45,7 +45,7 @@ function ContactProfile() {
       <div className="header"></div>
       <div className="profile-info">
         <img
-          src="https://cdn.domestika.org/c_fill,dpr_auto,f_auto,h_256,pg_1,t_base_params,w_256/v1575591291/avatars/000/161/315/161315-original.jpg?1575591291"
+          src={profileUser.profileimage}
           alt="Profile Picture"
           className="profile-picture"
         />

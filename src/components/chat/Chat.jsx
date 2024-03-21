@@ -82,8 +82,7 @@ function Chat({ loggedInUser, navigate }) {
 
   return (
     <div className="chat">
-      <ChatHeading
-        title={`Chat #${id}`}
+      <ChatHeading id={id} />
         onDelete={deleteChat}
         fetchMessages={fetchMessages}
       />
