@@ -40,6 +40,7 @@ function EditProfile(){
     return (
         <div className="profile-container">
             <div className="header"></div>
+            <img src={context.loggedInUser.profileimage} alt="Profile Picture" className="profile-picture"/>
             <div>
                 <form onSubmit={handleSubmit}>
                 <div>
