@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../App";
+import Logo from "../logo/Logo";
 
 function Menu() {
   const context = useContext(DataContext);

@@ -1,6 +1,10 @@
+import './logo.css'
+
 function Logo() {
   return (
-    <svg></svg>
+
+
+    <span className="logo">BB</span>
   )
 }
 

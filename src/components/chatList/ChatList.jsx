@@ -66,7 +66,7 @@ function ChatList() {
         {chats.map((chat) => (
           <li key={chat.id}>
             <button onClick={() => handleChatClick(chat)}>
-              Chat #{chat.id}
+              {chat.content}
             </button>
           </li>
         ))}
