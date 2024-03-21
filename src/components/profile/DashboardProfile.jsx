@@ -10,7 +10,8 @@ function DashboardProfile() {
   const navigate = useNavigate();
   const [currentProfile, setCurrentProfile] = useState({
     username: '',
-    email: ''
+    email: '',
+    profileimage: ''
   });
   const [canEdit, setCanEdit] = useState(false)
 
@@ -19,7 +20,8 @@ function DashboardProfile() {
       setCanEdit(true);
       setCurrentProfile({
         username: context.loggedInUser.username,
-        email: context.loggedInUser.email
+        email: context.loggedInUser.email,
+        profileimage: context.loggedInUser.profileimage
       });
     } else {
       const authToken = localStorage.getItem("token");
@@ -30,10 +32,11 @@ function DashboardProfile() {
     })
       .then(response => {
         console.log(response)
-        const { username, email } = response.data;
+        const { username, email, profileimage } = response.data;
         setCurrentProfile({
           username,
-          email
+          email,
+          profileimage
         });
       })
       .catch(error => console.error('Error fetching user data:', error));
@@ -45,7 +48,9 @@ function DashboardProfile() {
 
   return (
     <div className="profile-container">
-      <div className="header"></div>
+      <div className="header">
+      <img src={currentProfile.profileimage} alt="Profile Picture" className="profile-picture"/>
+      </div>
       <div className="profile-info">
         <h1 className="username">{currentProfile.username}</h1>
         <p className="email">{currentProfile.email}</p>

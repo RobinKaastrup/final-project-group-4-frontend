@@ -30,7 +30,7 @@ body, html {
     border-radius: 50%; /* Circular profile picture */
     object-fit: cover; /* Keep aspect ratio */
     display: block;
-    margin: -60px auto 10px; /* Position it partly inside the header */
+    margin: -60px auto 10px; /* Centered horizontally, positioned partly inside the header vertically */
     border: 3px solid white; /* Optional: add a border around the picture */
 }
 
