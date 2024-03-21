@@ -54,7 +54,7 @@ function Chat({ loggedInUser }) {
 
   return (
     <div className="chat">
-      <ChatHeading title={`Chat #${id}`} />
+      <ChatHeading id={id} />
       <div className="messages-container">
         {messages.map((message, index) => (
           <Message key={index} message={message} loggedInUser={loggedInUser} />
