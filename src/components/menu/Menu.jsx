@@ -15,8 +15,8 @@ function Menu() {
 
   return (
     <nav className="menu-container">
-      <img />
       <ul className="menu-list">
+
         <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>
           Profile
         </li>
@@ -25,9 +25,9 @@ function Menu() {
           Chat
         </li>
       </ul>
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
+      <ul className="menu-list">
+        <li className="logout-button" onClick={handleLogout}>Logout</li>
+      </ul>
     </nav>
   );
 }
