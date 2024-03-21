@@ -15,9 +15,7 @@ function DashboardProfile() {
   const [canEdit, setCanEdit] = useState(false)
 
   useEffect(() => {
-    console.log(userId.id)
-    console.log(context.loggedInUser.id)
-    if (userId.id === context.loggedInUser.id) {
+    if (userId.id == context.loggedInUser.id) {
       setCanEdit(true);
       setCurrentProfile({
         username: context.loggedInUser.username,
