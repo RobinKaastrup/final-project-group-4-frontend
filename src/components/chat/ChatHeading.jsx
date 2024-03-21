@@ -1,11 +1,14 @@
-function ChatHeading(props) {
-  const { title } = props
+import React from "react";
 
+function ChatHeading({ title, onDelete }) {
   return (
     <div className="chat-heading">
-      {title}
+      <h2>{title}</h2>
+      <button onClick={onDelete} className="delete-button">
+        Delete Chat
+      </button>
     </div>
-  )
+  );
 }
 
-export default ChatHeading
+export default ChatHeading;
