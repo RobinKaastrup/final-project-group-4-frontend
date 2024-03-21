@@ -82,10 +82,10 @@ function Chat({ loggedInUser, navigate }) {
 
   return (
     <div className="chat">
-      <ChatHeading id={id} />
+      <ChatHeading id={id} 
         onDelete={deleteChat}
         fetchMessages={fetchMessages}
-      />
+        />
       <div className="messages-container">
         {messages.map((message) => (
           <Message
