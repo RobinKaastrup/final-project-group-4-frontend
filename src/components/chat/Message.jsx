@@ -5,12 +5,15 @@ import { DataContext } from "../../App"; // Assuming DataContext is exported fro
 function Message({ message }) {
   const { baseURL } = useContext(DataContext);
   const [username, setUsername] = useState("");
+  const [userImage, setUserimage] = useState("")
 
   console.log("Message component:", message);
 
   useEffect(() => {
-    if (message.userId) {
-      fetchUsername(message.userId);
+    console.log("before")
+    console.log(message)
+    if (message.user.id) {
+      fetchUsername(message.user.id);
     }
   }, [message.userId]);
 
@@ -24,6 +27,7 @@ function Message({ message }) {
       });
       console.log("Username response:", response.data);
       setUsername(response.data.username);
+      setUserimage(response.data.profileimage)
     } catch (error) {
       console.error("Error fetching username:", error);
     }
@@ -33,13 +37,13 @@ function Message({ message }) {
     <div className="message">
       <img
         className="message-pic"
-        src="https://cdn.domestika.org/c_fill,dpr_auto,f_auto,h_256,pg_1,t_base_params,w_256/v1575591291/avatars/000/161/315/161315-original.jpg?1575591291"
+        src={`${userImage}`}
         alt="User avatar"
       />
       <span className="message-name">
         <b>{username}</b>
       </span>
-      <p className="message-body">{message}</p>
+      <p className="message-body">{message.content}</p>
     </div>
   );
 }
