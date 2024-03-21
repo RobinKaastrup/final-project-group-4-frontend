@@ -1,25 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { DataContext } from "../../App"; // Assuming DataContext is exported from App.jsx
 
 function Message({ message }) {
-  const [username, setUsername] = useState(null);
+  const { baseURL } = useContext(DataContext);
+  const [username, setUsername] = useState("");
+
+  console.log("Message component:", message);
 
   useEffect(() => {
-    const fetchUsername = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:4000/chats/${message.chat.id}/users/${message.user.id}`
-        );
-        setUsername(response.data.username);
-      } catch (error) {
-        console.error("Error fetching username:", error);
-      }
-    };
-
-    if (message && message.user) {
-      fetchUsername();
+    if (message.userId) {
+      fetchUsername(message.userId);
     }
-  }, [message]);
+  }, [message.userId]);
+
+  const fetchUsername = async (userId) => {
+    try {
+      const authToken = localStorage.getItem("token");
+      const response = await axios.get(`${baseURL}/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      console.log("Username response:", response.data);
+      setUsername(response.data.username);
+    } catch (error) {
+      console.error("Error fetching username:", error);
+    }
+  };
 
   return (
     <div className="message">
@@ -29,7 +37,7 @@ function Message({ message }) {
         alt="User avatar"
       />
       <span className="message-name">
-        <b>{username || "User"}</b>
+        <b>{username}</b>
       </span>
       <p className="message-body">{message}</p>
     </div>

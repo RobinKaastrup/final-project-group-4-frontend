@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../App";
 
 function Menu() {
-  const context = useContext(DataContext)
+  const context = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,17 +16,18 @@ function Menu() {
   return (
     <nav className="menu-container">
       <ul className="menu-list">
-
-        <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>
-          Profile
+        <li onClick={() => navigate(`/profile`)}>Profile</li>
+        <li onClick={() => navigate(`/contacts/${context.loggedInUser.id}`)}>
+          Contacts
         </li>
-        <li onClick={() => navigate("/contacts/1")}>Contacts</li>
         <li onClick={() => navigate(`/chats/${context.loggedInUser.id}`)}>
           Chat
         </li>
       </ul>
       <ul className="menu-list">
-        <li className="logout-button" onClick={handleLogout}>Logout</li>
+        <li className="logout-button" onClick={handleLogout}>
+          Logout
+        </li>
       </ul>
     </nav>
   );

@@ -7,7 +7,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 import DashboardChat from "./components/dashboard/DashboardChat";
 import DashboardContacts from "./components/dashboard/DashboardContacts";
 import DashboardProfile from "./components/profile/DashboardProfile";
-import EditProfile from './components/profile/EditProfile'
+import EditProfile from "./components/profile/EditProfile";
+import ContactProfile from "./components/profile/ContactProfile";
 import Chat from "./components/chat/Chat";
 import axios from "axios";
 
@@ -21,9 +22,11 @@ function App() {
   useEffect(() => {
     const authToken = localStorage.getItem("token");
 
-    if (!authToken | loggedInUser === null && window.location.pathname !== "/signup") {
+    if (
+      !authToken | (loggedInUser === null) &&
+      window.location.pathname !== "/signup"
+    ) {
       navigate && navigate("/login"); // Check if navigate exists before using it
-
     } else if (authToken && loggedInUser !== null) {
       axios
         .get(`${baseURL}/users/${loggedInUser.id}`, {
@@ -59,7 +62,8 @@ function App() {
                 element={<Chat loggedInUser={loggedInUser} />}
               />
             </Route>
-            <Route path="/profile/:id" element={<DashboardProfile />} />
+            <Route path="/profile" element={<DashboardProfile />} />
+            <Route path="/profile/:id" element={<ContactProfile />} />
             <Route path="/profile/edit/:id" element={<EditProfile />} />
             <Route path="/contacts/:id" element={<DashboardContacts />} />
           </Route>
