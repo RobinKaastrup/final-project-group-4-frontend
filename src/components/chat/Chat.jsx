@@ -88,22 +88,11 @@ function Chat({ loggedInUser, navigate }) {
 
   return (
     <div className="chat">
-
       {id ? ( // Check if ID is valid
         <>
-      <ChatHeading id={id} 
-        onDelete={deleteChat}
-        fetchMessages={fetchMessages}
-        />
-      <div className="messages-container">
-        {messages.map((message) => (
-          <Message
-            key={message.id}
-            message={message}
-            loggedInUser={loggedInUser}
-            onMessageEdited={handleEditMessage}
-            onMessageDeleted={handleDeleteMessage}
-
+          <ChatHeading id={id} 
+            onDelete={deleteChat}
+            fetchMessages={fetchMessages}
           />
             ))}
           </div>
@@ -119,12 +108,11 @@ function Chat({ loggedInUser, navigate }) {
             textAlign: "center",
           }}
         >
-          Start a new chat with one of your{" "}
-          <Link to={`/contacts/${userId}`}>contacts.</Link>
+          Start a new chat with one of your <Link to={`/contacts/${userId}`}>contacts.</Link>
         </div>
       )}
     </div>
   );
-}
+}  
 
 export default Chat;
