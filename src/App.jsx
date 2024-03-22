@@ -57,9 +57,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Dashboard />}>
-            <Route path="chats/welcome" element={<ChatWelcome />} ></Route>
+            <Route path="chats/welcome" element={<ChatWelcome />}></Route>
             <Route path="/chats" element={<DashboardChat />}>
-              
               <Route
                 path="/chats/:id"
                 element={<Chat loggedInUser={loggedInUser} />}

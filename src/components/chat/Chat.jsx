@@ -94,15 +94,6 @@ function Chat({ loggedInUser, navigate }) {
             onDelete={deleteChat}
             fetchMessages={fetchMessages}
           />
-          <div className="messages-container">
-            {messages.map((message) => (
-              <Message
-                key={message.id}
-                message={message}
-                loggedInUser={loggedInUser}
-                onMessageEdited={handleEditMessage}
-                onMessageDeleted={handleDeleteMessage}
-              />
             ))}
           </div>
           <ChatInput onMessageSent={handleMessageSent} />
