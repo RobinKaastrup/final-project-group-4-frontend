@@ -1,25 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../App";
-import Logo from "../logo/Logo";
+import axios from "axios";
 
 function Menu() {
-  const context = useContext(DataContext);
+  const { loggedInUser } = useContext(DataContext);
   const navigate = useNavigate();
+  const [hasChats, setHasChats] = useState(false);
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        if (loggedInUser) {
+          const authToken = localStorage.getItem("token");
+          const response = await axios.get(
+            `http://localhost:4000/chats/${loggedInUser.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            }
+          );
+          const existingChats = response.data.data;
+          console.log("existingChats", existingChats);
+          setHasChats(existingChats !== null);
+        }
+      } catch (error) {
+        console.error("Error fetching user's chats:", error);
+      }
+    };
+
+    fetchChats();
+  }, [loggedInUser]);
 
   const handleLogout = () => {
-    // Clear any user data or tokens from local storage
     localStorage.removeItem("token");
-    // Redirect to the login page
     navigate("/login");
   };
 
   return (
     <nav className="menu-container">
       <ul className="menu-list">
-        <li onClick={() => navigate(`/profile/${context.loggedInUser.id}`)}>Profile</li>
-        <li onClick={() => navigate(`/contacts/${context.loggedInUser.id}`)}>Contacts</li>
-        <li onClick={() => navigate(`/chats/welcome`)}>
+        <li onClick={() => navigate(`/profile/${loggedInUser.id}`)}>Profile</li>
+        <li onClick={() => navigate(`/contacts/${loggedInUser.id}`)}>
+          Contacts
+        </li>
+        <li onClick={() => navigate(hasChats ? `/chats` : `/chats/welcome`)}>
           Chat
         </li>
       </ul>
